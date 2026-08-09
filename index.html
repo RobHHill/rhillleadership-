@@ -1,45 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RH Leadership — Robert Hill</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #14181F;
+    --charcoal: #1E2430;
+    --bone: #EDE8DD;
+    --bone-dim: #C9C2B2;
+    --brass: #B08D57;
+    --brass-bright: #D3AE78;
+    --slate: #7C8494;
+    --rule: rgba(237, 232, 221, 0.14);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--ink);
+    color: var(--bone);
+    font-family: 'Space Grotesk', sans-serif;
+    overflow-x: hidden;
+  }
+  .display { font-family: 'Fraunces', serif; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 28px 56px;
+    background: linear-gradient(to bottom, rgba(20,24,31,0.95), transparent);
+  }
+  .nav-mark { font-family: 'Fraunces', serif; font-size: 20px; letter-spacing: 0.02em; font-weight: 500; }
+  .nav-mark span { color: var(--brass-bright); }
+  .nav-links { display: flex; gap: 40px; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .nav-links a { color: var(--bone-dim); text-decoration: none; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--brass-bright); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 0 56px;
+    position: relative;
+  }
+  .hero-line {
+    position: absolute; left: 56px; top: 0; bottom: 0; width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--rule) 15%, var(--rule) 85%, transparent);
+  }
+  .eyebrow {
+    font-size: 13px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--brass-bright); margin-bottom: 28px; padding-left: 24px;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+  h1.hero-title {
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 300;
+    line-height: 1.02;
+    padding-left: 24px;
+    max-width: 1000px;
+    opacity: 0; animation: fadeUp 0.9s ease forwards 0.4s;
+  }
+  h1.hero-title em { font-style: italic; font-weight: 500; color: var(--brass-bright); }
+  .hero-sub {
+    padding-left: 24px; margin-top: 32px;
+    font-size: 18px; line-height: 1.6; color: var(--bone-dim);
+    max-width: 540px; font-weight: 300;
+    opacity: 0; animation: fadeUp 0.9s ease forwards 0.6s;
+  }
+  .hero-cta {
+    padding-left: 24px; margin-top: 48px; display: flex; gap: 20px; align-items: center;
+    opacity: 0; animation: fadeUp 0.9s ease forwards 0.8s;
+  }
+  .btn-primary {
+    background: var(--brass); color: var(--ink); border: none;
+    padding: 16px 32px; font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+    font-size: 14px; letter-spacing: 0.03em; cursor: pointer;
+    transition: background 0.3s;
+  }
+  .btn-primary:hover { background: var(--brass-bright); }
+  .btn-ghost {
+    color: var(--bone); text-decoration: none; font-size: 14px;
+    border-bottom: 1px solid var(--slate); padding-bottom: 4px;
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .btn-ghost:hover { border-color: var(--brass-bright); color: var(--brass-bright); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* MARQUEE / CREDENTIAL STRIP */
+  .strip {
+    border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+    padding: 22px 56px; display: flex; gap: 64px;
+    font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--slate);
+    overflow-x: auto;
+  }
+
+  /* PILLARS - signature element: a numbered "field" of practice, laid out like tabs in a leader's notebook */
+  .pillars {
+    padding: 140px 56px; max-width: 1200px; margin: 0 auto;
+  }
+  .section-head {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 80px; flex-wrap: wrap; gap: 24px;
+    border-bottom: 1px solid var(--rule); padding-bottom: 32px;
+  }
+  .section-head h2 {
+    font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(32px, 4vw, 48px);
+  }
+  .section-head p { color: var(--slate); max-width: 360px; font-size: 15px; line-height: 1.6; }
+
+  .pillar-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    background: var(--rule);
+  }
+  .pillar {
+    background: var(--ink); padding: 44px 32px; position: relative;
+    transition: background 0.4s;
+  }
+  .pillar:hover { background: var(--charcoal); }
+  .pillar-index {
+    font-family: 'Fraunces', serif; font-style: italic; font-size: 15px;
+    color: var(--brass); margin-bottom: 28px; display: block;
+  }
+  .pillar h3 {
+    font-family: 'Fraunces', serif; font-weight: 500; font-size: 24px; margin-bottom: 16px;
+  }
+  .pillar p { color: var(--bone-dim); font-size: 14.5px; line-height: 1.7; font-weight: 300; }
+
+  /* STATEMENT / SIGNATURE QUOTE BLOCK */
+  .statement {
+    padding: 100px 56px; text-align: center; position: relative;
+  }
+  .statement blockquote {
+    font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
+    font-size: clamp(28px, 3.4vw, 44px); line-height: 1.4;
+    max-width: 900px; margin: 0 auto; color: var(--bone);
+  }
+  .statement cite {
+    display: block; margin-top: 32px; font-style: normal;
+    font-family: 'Space Grotesk', sans-serif; font-size: 13px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--brass-bright);
+  }
+
+  /* ABOUT */
+  .about {
+    padding: 60px 56px 140px; max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 80px; align-items: start;
+  }
+  .about-portrait {
+    aspect-ratio: 4/5; background: linear-gradient(160deg, var(--charcoal), var(--ink));
+    border: 1px solid var(--rule); position: relative; display: flex; align-items: flex-end; padding: 28px;
+  }
+  .about-portrait::after {
+    content: "R.H."; font-family: 'Fraunces', serif; font-size: 15px; letter-spacing: 0.1em;
+    color: var(--slate);
+  }
+  .about-text .eyebrow { padding-left: 0; }
+  .about-text h2 { font-family: 'Fraunces', serif; font-weight: 300; font-size: 38px; margin-bottom: 28px; line-height: 1.2; }
+  .about-text p { color: var(--bone-dim); font-size: 16px; line-height: 1.75; font-weight: 300; margin-bottom: 20px; max-width: 560px; }
+
+  /* CONTACT / FOOTER */
+  footer {
+    border-top: 1px solid var(--rule); padding: 90px 56px 40px;
+  }
+  .footer-cta {
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 32px;
+    margin-bottom: 90px;
+  }
+  .footer-cta h2 {
+    font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(32px, 4vw, 52px); max-width: 640px;
+  }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+    padding-top: 32px; border-top: 1px solid var(--rule);
+    font-size: 12px; color: var(--slate); letter-spacing: 0.05em;
+  }
+  .footer-bottom a { color: var(--slate); text-decoration: none; margin-left: 24px; }
+  .footer-bottom a:hover { color: var(--brass-bright); }
+
+  @media (max-width: 860px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    .hero { padding: 0 24px; }
+    .hero-line { left: 24px; }
+    .eyebrow, h1.hero-title, .hero-sub, .hero-cta { padding-left: 16px; }
+    .pillars, .about, .statement, footer, .strip { padding-left: 24px; padding-right: 24px; }
+    .pillar-grid { grid-template-columns: 1fr; }
+    .about { grid-template-columns: 1fr; }
+    .about-portrait { max-width: 260px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-mark">RH<span>·</span>LEADERSHIP</div>
+  <div class="nav-links">
+    <a href="#practice">Practice</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-line"></div>
+  <div class="eyebrow">Robert Hill — Executive Advisory</div>
+  <h1 class="hero-title display">Leadership is a <em>practice</em>,<br>not a title.</h1>
+  <p class="hero-sub">I work with executives and the teams behind them to build the judgment, clarity, and presence that titles alone don't provide.</p>
+  <div class="hero-cta">
+    <button class="btn-primary">Book a Conversation</button>
+    <a href="#practice" class="btn-ghost">See the practice areas</a>
+  </div>
+</section>
+
+<div class="strip">
+  <span>Executive Coaching</span>
+  <span>Team Alignment</span>
+  <span>Strategic Communication</span>
+  <span>Succession Readiness</span>
+  <span>Culture & Accountability</span>
+</div>
+
+<section class="pillars" id="practice">
+  <div class="section-head">
+    <h2 class="display">Where I focus</h2>
+    <p>Three areas where leadership is built or lost — under pressure, in transition, and at scale.</p>
+  </div>
+  <div class="pillar-grid">
+    <div class="pillar">
+      <span class="pillar-index display">I.</span>
+      <h3 class="display">Clarity Under Pressure</h3>
+      <p>Decision-making frameworks for the moments that don't wait for a strategy offsite — built through direct, honest coaching.</p>
+    </div>
     <div class="pillar">
       <span class="pillar-index display">II.</span>
-      <h3 class="display">Team Communication</h3>
-      <p>Bring DISC to your team to surface how each person communicates, decides, and handles conflict — and how to work better across those differences.</p>
+      <h3 class="display">Building the Bench</h3>
+      <p>Identifying and developing the next layer of leaders before you need them — succession as a discipline, not a scramble.</p>
     </div>
     <div class="pillar">
       <span class="pillar-index display">III.</span>
-      <h3 class="display">Leadership Coaching</h3>
-      <p>Ongoing one-on-one coaching built on proven leadership principles, tailored to where you are and where you're trying to go.</p>
+      <h3 class="display">The Room You Lead</h3>
+      <p>Team dynamics, trust, and accountability — the difference between a team that performs and one that just reports to you.</p>
     </div>
   </div>
 </section>
- 
+
 <section class="statement">
-  <blockquote class="display">"People don't resist leadership — they resist being misunderstood. DISC starts there."</blockquote>
-  Robert Hill
+  <blockquote class="display">"The best leaders I've worked with weren't the loudest in the room — they were the clearest."</blockquote>
+  <cite>Robert Hill</cite>
 </section>
- 
+
 <section class="about" id="about">
   <div class="about-portrait"></div>
   <div class="about-text">
     <div class="eyebrow display">About</div>
-    <h2 class="display">Coaching built on a proven framework.</h2>
-    <p>I'm a DISC-certified coach working with individuals and teams who want to lead with more self-awareness and less guesswork. DISC is where every engagement starts — a clear, practical lens on how you and the people around you communicate, decide, and handle pressure.</p>
-    <p>My approach is honest, practical, and built around you — not a generic script. Every engagement is tailored to where you are and what you're trying to achieve.</p>
+    <h2 class="display">A practitioner's approach to leadership.</h2>
+    <p>My work is grounded in direct experience, not theory delivered from a slide deck. I've spent my career in rooms where decisions actually get made, and I bring that same standard to every engagement — plain language, hard questions, and a bias toward what actually works.</p>
+    <p>I take on a limited number of executive clients and team engagements each year, so the work stays personal and the results stay accountable.</p>
     <a href="#contact" class="btn-ghost">Read my full story →</a>
   </div>
 </section>
- 
+
 <footer id="contact">
   <div class="footer-cta">
-    <h2 class="display">Ready to find out how you're wired to lead?</h2>
-    <a href="https://calendly.com/robhill1593/30min" target="_blank" rel="noopener" class="btn-primary">Book a Free DISC Consultation</a>
+    <h2 class="display">Let's talk about where your leadership needs to go next.</h2>
+    <button class="btn-primary">Start the Conversation</button>
   </div>
   <div class="footer-bottom">
-    <span>© 2026 Robert Hill · RHill Leadership</span>
+    <span>© 2026 Robert Hill · RH Leadership</span>
     <div>
       <a href="#">LinkedIn</a>
       <a href="#">Email</a>
     </div>
   </div>
 </footer>
- 
+
 </body>
 </html>
