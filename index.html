@@ -76,9 +76,11 @@
     opacity: 0; animation: fadeUp 0.9s ease forwards 0.8s;
   }
   .btn-primary {
+    display: inline-block;
     background: var(--brass); color: var(--ink); border: none;
     padding: 16px 32px; font-family: 'Space Grotesk', sans-serif; font-weight: 600;
     font-size: 14px; letter-spacing: 0.03em; cursor: pointer;
+    text-decoration: none; text-align: center;
     transition: background 0.3s;
   }
   .btn-primary:hover { background: var(--brass-bright); }
@@ -157,10 +159,15 @@
   .about-portrait {
     aspect-ratio: 4/5; background: linear-gradient(160deg, var(--charcoal), var(--ink));
     border: 1px solid var(--rule); position: relative; display: flex; align-items: flex-end; padding: 28px;
+    overflow: hidden;
   }
   .about-portrait::after {
     content: "R.H."; font-family: 'Fraunces', serif; font-size: 15px; letter-spacing: 0.1em;
-    color: var(--slate);
+    color: var(--slate); position: relative; z-index: 1;
+  }
+  .about-portrait img {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover; display: block;
   }
   .about-text .eyebrow { padding-left: 0; }
   .about-text h2 { font-family: 'Fraunces', serif; font-weight: 300; font-size: 38px; margin-bottom: 28px; line-height: 1.2; }
@@ -219,7 +226,7 @@
   <h1 class="hero-title display">Leadership is a <em>practice</em>,<br>not a title.</h1>
   <p class="hero-sub">I work with executives and the teams behind them to build the judgment, clarity, and presence that titles alone don't provide.</p>
   <div class="hero-cta">
-    <button class="btn-primary">Book a Conversation</button>
+    <a href="https://calendly.com/robhill1593/30min" target="_blank" rel="noopener" class="btn-primary">Book a Conversation</a>
     <a href="#practice" class="btn-ghost">See the practice areas</a>
   </div>
 </section>
@@ -262,7 +269,9 @@
 </section>
 
 <section class="about" id="about">
-  <div class="about-portrait"></div>
+  <div class="about-portrait">
+    <img src="robert-hill.jpg" alt="Robert Hill">
+  </div>
   <div class="about-text">
     <div class="eyebrow display">About</div>
     <h2 class="display">A practitioner's approach to leadership.</h2>
@@ -275,7 +284,7 @@
 <footer id="contact">
   <div class="footer-cta">
     <h2 class="display">Let's talk about where your leadership needs to go next.</h2>
-    <button class="btn-primary">Start the Conversation</button>
+    <a href="https://calendly.com/robhill1593/30min" target="_blank" rel="noopener" class="btn-primary">Start the Conversation</a>
   </div>
   <div class="footer-bottom">
     <span>© 2026 Robert Hill · RH Leadership</span>
